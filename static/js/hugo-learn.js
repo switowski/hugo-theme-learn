@@ -22,9 +22,12 @@ var images = $("div#body-inner img").not(".inline");
 images.wrap(function(){
   var image =$(this);
   var o = getUrlParameter(image[0].src);
+  if (typeof o === "undefined") {
+    var o = {}
+  }
   var f = o['featherlight'];
-  // IF featherlight is false, do not use feather light
-  if (f != 'false') {
+  // Use featherlight only when enabled
+  if (f == 'true') {
     if (!image.parent("a").length) {
       return "<a href='" + image[0].src + "' data-featherlight='image'></a>";
     }
